@@ -228,17 +228,13 @@
           <h3 style="font-size:13px;color:var(--gray-600);margin-bottom:8px;">Best for</h3>
           <ul>
             <li>Stores wanting full branding during payment</li>
-            <li>Requires copying <code>form-pay.php</code> template into your theme</li>
+            <li>Optionally copy <code>form-pay.php</code> template into your theme</li>
             <li>Works well with custom page builders</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="callout callout-warn" style="margin-top:20px;">
-      <span class="icon">⚙️</span>
-      <p><strong>WC Order Pay Page setup:</strong> Copy <code>form-pay.php</code> from the plugin's <code>sources/</code> folder into your active theme at <code>yourtheme/woocommerce/checkout/form-pay.php</code>.</p>
-    </div>
   </section>
 
   <hr class="divider" />
@@ -437,12 +433,6 @@
         <summary>Where can I view payment activity logs?</summary>
         <div class="faq-body">
           Go to <strong>WooCommerce → Status → Logs</strong> and filter by source <code>yourpropfirm-fanbasis-debug</code>. Make sure <strong>Enable Logs</strong> is turned on under Additional Settings. Use <strong>Advanced</strong> log mode when debugging — it shows full API payloads and responses.
-        </div>
-      </details>
-      <details>
-        <summary>Does this work for guest checkouts?</summary>
-        <div class="faq-body">
-          Yes. The plugin grants payment access to any visitor who has a valid order key in the URL, regardless of whether they are logged in. Guest customers can complete the payment and reach the order-received page normally.
         </div>
       </details>
       <details>
