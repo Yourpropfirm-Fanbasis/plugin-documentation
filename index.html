@@ -57,7 +57,7 @@
     </p>
     <div style="margin-top:24px;" class="callout callout-info">
       <span class="icon">ℹ️</span>
-      <p><strong>Requirements</strong> WordPress 3.0.1+, WooCommerce, PHP 5.4+. No build tools or external dependencies needed.</p>
+      <p><strong>Requirements</strong> WordPress 6.8+, WooCommerce, PHP 8.0+. No build tools or external dependencies needed.</p>
     </div>
   </section>
 
@@ -347,13 +347,13 @@
           </tr>
           <tr>
             <td><strong>Verify Payment Method</strong></td>
-            <td>Webhook / Thank You Page / Both</td>
-            <td>How the plugin confirms payment. <em>Both</em> uses webhook as primary with cron as fallback.</td>
+            <td>Webhook<br/>Webhook + Thank You Page</td>
+            <td><strong>Webhook:</strong> order completed by webhook only.<br/><strong>Webhook + Thank You Page:</strong> webhook completes the order; cron also runs on the order-received page as a fallback if the webhook is late.</td>
           </tr>
           <tr>
             <td><strong>Thank-you Page Mode</strong></td>
-            <td>Immediate / Wait for Payment</td>
-            <td><em>Immediate</em>: redirect to order-received straight away. <em>Wait</em>: show overlay until webhook arrives — useful for GTM / analytics events.</td>
+            <td>Immediate<br/>Wait for Payment Confirmation</td>
+            <td><strong>Immediate:</strong> customer lands on order-received right away. Order status may still be <em>Pending</em> while the webhook processes in the background.<br/><strong>Wait for Payment Confirmation:</strong> an overlay is shown while the page polls until the webhook confirms payment and the order becomes <em>Completed</em>. Use this when GA4 / GTM needs the order to be <em>Completed</em> before firing the <code>purchase</code> event — ensures accurate conversion tracking.</td>
           </tr>
         </tbody>
       </table>
@@ -430,7 +430,7 @@
       <details>
         <summary>What happens if the webhook is delayed or doesn't arrive?</summary>
         <div class="faq-body">
-          Set <strong>Verify Payment Method</strong> to <strong>Both</strong> in Advanced Settings. The plugin will use the webhook as the primary confirmation method, and fall back to a direct API check (via WP-Cron) when the customer lands on the order-received page — ensuring the order is completed even if the webhook is late.
+          Set <strong>Verify Payment Method</strong> to <strong>Webhook + Thank You Page</strong> in Advanced Settings. The plugin will process via webhook as primary, and also run a cron fallback when the customer lands on the order-received page — ensuring the order is completed even if the webhook is late.
         </div>
       </details>
       <details>
@@ -460,7 +460,7 @@
       <details>
         <summary>What order status is set after a successful payment?</summary>
         <div class="faq-body">
-          When Fanbasis confirms payment via webhook, the plugin calls WooCommerce's <code>payment_complete()</code> and then sets the order status to <strong>Completed</strong>. A standard WooCommerce order note is automatically added with the transaction ID.
+          When Fanbasis confirms payment via webhook, the plugin validates the amount, calls WooCommerce's <code>payment_complete()</code>, and sets the order status to <strong>Completed</strong>. An order note is automatically added with <code>fan_product_id</code>, <code>fan_transaction_id</code>, <code>fan_payment_id</code>, and <code>validation_method: webhook</code>. These values are also visible in the <strong>Fanbasis Payment Info</strong> panel on the order detail page.
         </div>
       </details>
       <details>
