@@ -4,416 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yourpropfirm Fanbasis — Plugin Documentation</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --brand:     #2563eb;
-      --brand-lt:  #eff6ff;
-      --brand-dk:  #1d4ed8;
-      --accent:    #059669;
-      --accent-lt: #ecfdf5;
-      --warn:      #d97706;
-      --warn-lt:   #fffbeb;
-      --danger:    #dc2626;
-      --danger-lt: #fef2f2;
-      --gray-50:   #f9fafb;
-      --gray-100:  #f3f4f6;
-      --gray-200:  #e5e7eb;
-      --gray-400:  #9ca3af;
-      --gray-600:  #4b5563;
-      --gray-700:  #374151;
-      --gray-900:  #111827;
-      --radius:    10px;
-      --shadow:    0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--gray-50);
-      color: var(--gray-700);
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    /* ── Layout ── */
-    .page-header {
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
-      color: #fff;
-      padding: 56px 24px 48px;
-      text-align: center;
-    }
-    .page-header .badge {
-      display: inline-block;
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.3);
-      border-radius: 999px;
-      padding: 4px 14px;
-      font-size: 12px;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .page-header h1 {
-      font-size: clamp(24px, 4vw, 38px);
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -.02em;
-    }
-    .page-header p {
-      font-size: 16px;
-      opacity: .85;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    nav.toc {
-      background: #fff;
-      border-bottom: 1px solid var(--gray-200);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav.toc ul {
-      display: flex;
-      list-style: none;
-      gap: 0;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    nav.toc ul::-webkit-scrollbar { display: none; }
-    nav.toc a {
-      display: block;
-      padding: 14px 16px;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--gray-600);
-      text-decoration: none;
-      white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      transition: color .15s, border-color .15s;
-    }
-    nav.toc a:hover { color: var(--brand); border-color: var(--brand); }
-
-    .wrapper {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
-    /* ── Sections ── */
-    section { margin-bottom: 64px; }
-    section:last-child { margin-bottom: 0; }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--brand);
-      margin-bottom: 8px;
-    }
-    h2 {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--gray-900);
-      letter-spacing: -.02em;
-      margin-bottom: 16px;
-    }
-    h3 {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin-bottom: 10px;
-    }
-    p { margin-bottom: 12px; }
-    p:last-child { margin-bottom: 0; }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--gray-200);
-      margin: 0 0 48px;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px 32px;
-    }
-    .card + .card { margin-top: 20px; }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    /* ── Feature list ── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    .feature-item {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      background: var(--brand-lt);
-    }
-    .feature-item h3 { font-size: 14px; margin-bottom: 4px; }
-    .feature-item p { font-size: 13px; color: var(--gray-600); margin: 0; }
-
-    /* ── Flowchart section ── */
-    .flowchart-wrap {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .flowchart-header {
-      background: var(--gray-50);
-      border-bottom: 1px solid var(--gray-200);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .flowchart-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .flowchart-header h3 { margin: 0; font-size: 15px; }
-    .flowchart-header p { margin: 0; font-size: 13px; color: var(--gray-600); }
-    .flowchart-body {
-      padding: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .flowchart-body img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── Steps ── */
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step {
-      display: flex;
-      gap: 20px;
-      position: relative;
-    }
-    .step:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 17px;
-      top: 44px;
-      bottom: 0;
-      width: 2px;
-      background: var(--gray-200);
-    }
-    .step-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--brand);
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-    .step-content { padding: 6px 0 28px; }
-    .step-content h3 { font-size: 15px; margin-bottom: 4px; }
-    .step-content p { font-size: 13.5px; color: var(--gray-600); margin: 0; }
-
-    /* ── Tabs ── */
-    .tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
-    .tab-btn {
-      padding: 8px 18px;
-      border-radius: 6px;
-      border: 1px solid var(--gray-200);
-      background: #fff;
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      color: var(--gray-600);
-      transition: all .15s;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--brand);
-      border-color: var(--brand);
-      color: #fff;
-    }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    /* ── Settings table ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-    }
-    thead th {
-      background: var(--gray-50);
-      border-bottom: 2px solid var(--gray-200);
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 600;
-      color: var(--gray-700);
-    }
-    tbody td {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--gray-100);
-      vertical-align: top;
-    }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover td { background: var(--gray-50); }
-    .badge-pill {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 600;
-    }
-    .pill-locked  { background: #fee2e2; color: #991b1b; }
-    .pill-hidden  { background: #fef3c7; color: #92400e; }
-    .pill-edit    { background: #d1fae5; color: #065f46; }
-    .pill-yes     { background: #d1fae5; color: #065f46; }
-    .pill-no      { background: var(--gray-100); color: var(--gray-600); }
-
-    /* ── Callout ── */
-    .callout {
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 13.5px;
-    }
-    .callout-info  { background: var(--brand-lt); border-left: 3px solid var(--brand); }
-    .callout-tip   { background: var(--accent-lt); border-left: 3px solid var(--accent); }
-    .callout-warn  { background: var(--warn-lt); border-left: 3px solid var(--warn); }
-    .callout .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-    .callout p { margin: 0; }
-    .callout strong { display: block; margin-bottom: 2px; }
-
-    /* ── FAQ ── */
-    details {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
-    summary {
-      padding: 16px 20px;
-      font-weight: 600;
-      font-size: 14.5px;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: '+';
-      font-size: 20px;
-      color: var(--gray-400);
-      flex-shrink: 0;
-      line-height: 1;
-      transition: transform .2s;
-    }
-    details[open] summary::after { content: '−'; }
-    details[open] summary { border-bottom: 1px solid var(--gray-100); }
-    .faq-body {
-      padding: 16px 20px;
-      font-size: 13.5px;
-      color: var(--gray-600);
-      line-height: 1.7;
-    }
-
-    /* ── Method card ── */
-    .method-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .method-card {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .method-card-header {
-      padding: 20px 24px 16px;
-      border-bottom: 1px solid var(--gray-100);
-    }
-    .method-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      border-radius: 4px;
-      padding: 2px 8px;
-      margin-bottom: 8px;
-    }
-    .tag-default { background: var(--brand-lt); color: var(--brand); }
-    .tag-alt     { background: var(--accent-lt); color: var(--accent); }
-    .method-card h3 { font-size: 16px; margin-bottom: 6px; }
-    .method-card p  { font-size: 13.5px; color: var(--gray-600); margin: 0; }
-    .method-card-body { padding: 20px 24px; }
-    .method-card ul { padding-left: 18px; }
-    .method-card li { font-size: 13.5px; color: var(--gray-600); margin-bottom: 6px; }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--gray-200);
-      background: #fff;
-      text-align: center;
-      padding: 28px 24px;
-      font-size: 13px;
-      color: var(--gray-400);
-    }
-
-    @media (max-width: 600px) {
-      .flowchart-body { padding: 20px 16px; }
-      .card { padding: 20px; }
-      .wrapper { padding: 32px 16px 64px; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+
+<!-- Password Gate -->
+<div id="gate">
+  <div id="gate-box">
+    <div class="gate-logo">🔒</div>
+    <h2>Yourpropfirm Fanbasis</h2>
+    <p>Plugin Documentation &mdash; Enter password to continue</p>
+    <div id="gate-input-wrap">
+      <input id="gate-input" type="password" placeholder="Password" autocomplete="current-password" />
+      <button id="gate-toggle" type="button" title="Show / hide password">👁</button>
+    </div>
+    <button id="gate-btn" type="button">Continue</button>
+    <div id="gate-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
 
 <!-- Header -->
 <header class="page-header">
@@ -447,7 +55,6 @@
     <p>
       Once a customer pays, Fanbasis sends a real-time notification (webhook) to your store. The plugin validates it and automatically marks the WooCommerce order as completed — no manual action required.
     </p>
-
     <div style="margin-top:24px;" class="callout callout-info">
       <span class="icon">ℹ️</span>
       <p><strong>Requirements</strong> WordPress 3.0.1+, WooCommerce, PHP 5.4+. No build tools or external dependencies needed.</p>
@@ -510,9 +117,8 @@
     <h2>How a Payment Works</h2>
     <p>From the moment a customer adds a product to their cart to the order confirmation email — here is the complete journey.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:28px;" class="flow-layout">
+    <div class="flow-layout">
 
-      <!-- Flowchart -->
       <div class="flowchart-wrap">
         <div class="flowchart-header">
           <div class="flowchart-dot" style="background:#059669;"></div>
@@ -529,7 +135,6 @@
         </div>
       </div>
 
-      <!-- Steps -->
       <div>
         <div class="steps">
           <div class="step">
@@ -550,7 +155,7 @@
             <div class="step-num">3</div>
             <div class="step-content">
               <h3>Payment Form Opens</h3>
-              <p>The Fanbasis payment form opens directly inside your website (popup modal or in-page). Billing details are pre-filled automatically from the WooCommerce order — the customer only needs to enter their card details.</p>
+              <p>The Fanbasis payment form opens directly inside your website (popup modal or in-page). Billing details are pre-filled automatically — the customer only needs to enter their card details.</p>
             </div>
           </div>
           <div class="step">
@@ -566,7 +171,7 @@
               <h3>Result: Success or Retry</h3>
               <p>
                 <strong>Success:</strong> Fanbasis notifies your store via webhook. The plugin validates the payment and marks the order as <em>Completed</em>.<br /><br />
-                <strong>Failed:</strong> An error message appears inside the form. The customer can correct their details and try again without restarting the checkout.
+                <strong>Failed:</strong> An error message appears inside the form. The customer can correct their details and try again without restarting checkout.
               </p>
             </div>
           </div>
@@ -586,12 +191,6 @@
       </div>
 
     </div>
-
-    <style>
-      @media (max-width: 760px) {
-        .flow-layout { grid-template-columns: 1fr !important; }
-      }
-    </style>
   </section>
 
   <hr class="divider" />
@@ -717,7 +316,7 @@
     <h2>Plugin Settings</h2>
     <p>All settings are found at <strong>WooCommerce → Settings → Yourpropfirm Fanbasis</strong>.</p>
 
-    <div class="tabs" style="margin-top:24px;" id="settings-tabs">
+    <div class="tabs" style="margin-top:24px;">
       <button class="tab-btn active" data-tab="general">General</button>
       <button class="tab-btn" data-tab="advanced">Advanced</button>
       <button class="tab-btn" data-tab="additional">Additional</button>
@@ -828,49 +427,42 @@
           No. The plugin registers the Fanbasis webhook automatically when you save settings. You can check the registration status, environment, and webhook URL under <strong>Webhook Status</strong> on the settings page. The webhook is also re-registered automatically if you change your API key or switch environments.
         </div>
       </details>
-
       <details>
         <summary>What happens if the webhook is delayed or doesn't arrive?</summary>
         <div class="faq-body">
           Set <strong>Verify Payment Method</strong> to <strong>Both</strong> in Advanced Settings. The plugin will use the webhook as the primary confirmation method, and fall back to a direct API check (via WP-Cron) when the customer lands on the order-received page — ensuring the order is completed even if the webhook is late.
         </div>
       </details>
-
       <details>
         <summary>Where can I view payment activity logs?</summary>
         <div class="faq-body">
           Go to <strong>WooCommerce → Status → Logs</strong> and filter by source <code>yourpropfirm-fanbasis-debug</code>. Make sure <strong>Enable Logs</strong> is turned on under Additional Settings. Use <strong>Advanced</strong> log mode when debugging — it shows full API payloads and responses.
         </div>
       </details>
-
       <details>
         <summary>Does this work for guest checkouts?</summary>
         <div class="faq-body">
           Yes. The plugin grants payment access to any visitor who has a valid order key in the URL, regardless of whether they are logged in. Guest customers can complete the payment and reach the order-received page normally.
         </div>
       </details>
-
       <details>
         <summary>Is the API key validated?</summary>
         <div class="faq-body">
           Yes. Every time you click <strong>Save changes</strong> on the settings page, the plugin sends a test request to the Fanbasis API to verify your key. If the key is invalid, an error message appears and settings are not saved.
         </div>
       </details>
-
       <details>
         <summary>Can I customise how the payment form looks?</summary>
         <div class="faq-body">
           Yes. The <strong>Styling Config</strong> section in settings gives you full control over the Fanbasis checkout form (theme, accent color, all color overrides, layout toggles), the popup modal (backdrop, container, header, spinner), and the processing overlay (enable/disable, background, spinner, text colors).
         </div>
       </details>
-
       <details>
         <summary>What order status is set after a successful payment?</summary>
         <div class="faq-body">
           When Fanbasis confirms payment via webhook, the plugin calls WooCommerce's <code>payment_complete()</code> and then sets the order status to <strong>Completed</strong>. A standard WooCommerce order note is automatically added with the transaction ID.
         </div>
       </details>
-
       <details>
         <summary>What happens to the Fanbasis payment link after payment?</summary>
         <div class="faq-body">
@@ -887,33 +479,6 @@
   <p>Yourpropfirm Fanbasis &nbsp;·&nbsp; Version 1.1.0 &nbsp;·&nbsp; For WooCommerce</p>
 </footer>
 
-<script>
-  // Tab switching
-  var tabBtns = document.querySelectorAll('.tab-btn');
-  var panels  = { general: 'tab-general', advanced: 'tab-advanced', additional: 'tab-additional', fields: 'tab-fields', styling: 'tab-styling' };
-
-  tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      tabBtns.forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var target = btn.getAttribute('data-tab');
-      Object.keys(panels).forEach(function(key) {
-        var el = document.getElementById(panels[key]);
-        if (key === target) {
-          el.style.display = 'block';
-        } else {
-          el.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Init: hide non-active panels
-  ['tab-advanced','tab-additional','tab-fields','tab-styling'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-</script>
-
+<script src="assets/js/main.js"></script>
 </body>
 </html>
