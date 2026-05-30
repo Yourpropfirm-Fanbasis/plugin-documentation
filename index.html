@@ -81,6 +81,7 @@
       </div>
       <div class="flowchart-body">
         <img
+          class="lightbox-trigger"
           src="assets/images/assets-01-flowchart-simple-integration-area.png"
           alt="Integration area diagram showing WooCommerce connecting to Payment Gateway Options (Fanbasis, Confirmo, Stripe, Other PSPs), then to Order Status, then to Yourpropfirm Plugin, then to Yourpropfirm platform."
         />
@@ -129,6 +130,7 @@
         </div>
         <div class="flowchart-body">
           <img
+            class="lightbox-trigger"
             src="assets/images/assets-02-flowchart-woocommerce-fanbasis.png"
             alt="Flowchart: Customer adds product to cart → Go to Checkout → Fill billing details, select Fanbasis Payment → Click Place Order → Payment form opens inside website → Customer fills card details → Payment result: Success (Payment confirmed by Fanbasis → Order marked Completed → Email sent) or Failed (Error shown, customer can retry)"
           />
@@ -448,6 +450,12 @@
 <footer>
   <p>Yourpropfirm Fanbasis &nbsp;·&nbsp; Version 1.1.0 &nbsp;·&nbsp; For WooCommerce</p>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <button id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>

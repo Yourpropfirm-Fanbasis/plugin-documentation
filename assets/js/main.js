@@ -58,6 +58,40 @@
   input.focus();
 })();
 
+/* ── Lightbox ── */
+(function () {
+  var lb    = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var lbClose = document.getElementById('lightbox-close');
+
+  function open(img) {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach(function (img) {
+    img.addEventListener('click', function () { open(img); });
+  });
+
+  lbClose.addEventListener('click', close);
+
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lb.classList.contains('open')) close();
+  });
+})();
+
 /* ── Settings Tabs ── */
 (function () {
   var tabBtns  = document.querySelectorAll('.tab-btn');
