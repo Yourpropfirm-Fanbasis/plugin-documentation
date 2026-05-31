@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-page:    #f0f4f7;
+  --bg-card:    #ffffff;
+  --bg-nav:     #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-code:    #1e2d3d;
+  --text:       #27374D;
+  --text-muted: #526D82;
+  --text-faint: #9DB2BF;
+  --border:     #DDE6ED;
+  --border-mid: #c5d5df;
+  --brand:      #27374D;
+  --brand-mid:  #526D82;
+  --accent:     #526D82;
+  --accent-lt:  #edf2f6;
+  --pill-bg:    #DDE6ED;
+  --pill-text:  #27374D;
+  --shadow:     0 1px 3px rgba(39,55,77,.08), 0 4px 16px rgba(39,55,77,.06);
+  --nav-h:      60px;
+}
+
+.dark {
+  --bg-page:    #131e2b;
+  --bg-card:    #1c2a3a;
+  --bg-nav:     #162030;
+  --bg-sidebar: #1c2a3a;
+  --bg-code:    #0f1923;
+  --text:       #DDE6ED;
+  --text-muted: #9DB2BF;
+  --text-faint: #526D82;
+  --border:     #2a3d52;
+  --border-mid: #354e66;
+  --brand:      #9DB2BF;
+  --brand-mid:  #9DB2BF;
+  --accent:     #9DB2BF;
+  --accent-lt:  #1e2e3f;
+  --pill-bg:    #27374D;
+  --pill-text:  #9DB2BF;
+  --shadow:     0 1px 3px rgba(0,0,0,.2), 0 4px 16px rgba(0,0,0,.18);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  transition: background .2s, color .2s;
+}
+
+/* ── Typography ── */
+h1 { font-size: 2rem; font-weight: 700; color: var(--text); }
+h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+h3 { font-size: 1rem; font-weight: 600; color: var(--text); }
+p  { color: var(--text-muted); margin-top: .5rem; }
+
+/* ── Links ── */
+a { color: var(--brand-mid); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+
+/* ── Anchor offset for fixed nav ── */
+section[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+
+/* ── Code ── */
+pre {
+  background: var(--bg-code);
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-size: 12.5px;
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  overflow-x: auto;
+  line-height: 1.7;
+  margin: 12px 0;
+  border: 1px solid rgba(255,255,255,.05);
+}
+code {
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  font-size: .85em;
+  background: var(--accent-lt);
+  color: var(--brand);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── Table ── */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+thead tr { background: var(--accent-lt); }
+th {
+  text-align: left; padding: 10px 14px;
+  font-weight: 600; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-muted);
+}
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); }
+
+/* ── Details / FAQ ── */
+details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  transition: background .15s;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: '+';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+details[open] summary::before { content: '−'; }
+summary:hover { background: var(--accent-lt); }
+.faq-body {
+  padding: 14px 18px 18px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.faq-body ul { padding-left: 20px; margin-top: 8px; }
+.faq-body li { margin-bottom: 4px; }
+.faq-body p { margin-top: 8px; }
