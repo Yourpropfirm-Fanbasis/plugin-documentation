@@ -35,5 +35,3 @@ The site is automatically built and deployed to GitHub Pages on every push to `m
 ```bash
 npm run build     # outputs static files to /out
 ```
-
-Live URL: `https://<username>.github.io/yourpropfirm-fanbasis-docs/`
