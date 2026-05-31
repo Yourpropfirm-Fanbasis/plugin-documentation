@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yourpropfirm Fanbasis — Technical Reference</title>
+  <title>Yourpropfirm Fanbasis - Technical Reference</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
     pre {
@@ -55,7 +55,7 @@
 
 <!-- Header -->
 <header class="page-header">
-  <div class="badge">🔒 Internal — Technical Reference</div>
+  <div class="badge">🔒 Internal - Technical Reference</div>
   <h1>Technical Reference</h1>
   <p>Architecture, payment flow, webhook, REST endpoints, settings keys, and order meta for Yourpropfirm Fanbasis.</p>
   <p style="margin-top:10px;font-size:13px;opacity:.7;">For internal use only. Do not distribute.</p>
@@ -100,7 +100,7 @@
     </div>
     <div class="callout callout-info" style="margin-top:16px;">
       <span class="icon">ℹ️</span>
-      <p>Pure WordPress plugin — no Composer, npm, or build tooling. PHP, JS, and CSS served directly. No automated test suite.</p>
+      <p>Pure WordPress plugin - no Composer, npm, or build tooling. PHP, JS, and CSS served directly. No automated test suite.</p>
     </div>
   </section>
 
@@ -114,7 +114,7 @@
 includes/
   class-yourpropfirm-fanbasis.php              Core class, hook wiring
   class-yourpropfirm-fanbasis-loader.php       Action/filter registry
-  class-yourpropfirm-fanbasis-gateway.php      WC_Payment_Gateway — process_payment()
+  class-yourpropfirm-fanbasis-gateway.php      WC_Payment_Gateway - process_payment()
   class-yourpropfirm-fanbasis-api.php          Fanbasis REST API client
   class-yourpropfirm-fanbasis-webhook.php      REST endpoints + webhook handler
   class-yourpropfirm-fanbasis-helper.php       Logging, SDK config builders
@@ -133,24 +133,24 @@ public/
     <div class="section-label">Gateway</div>
     <h2>Checkout Methods</h2>
 
-    <h3 style="margin-bottom:8px;">Embed — Popup Modal <span style="font-size:12px;font-weight:500;background:var(--brand-lt);color:var(--brand);padding:2px 8px;border-radius:4px;margin-left:6px;">default</span></h3>
-    <p style="font-size:13.5px;color:var(--gray-600);">Payment form opens as a full-screen overlay modal on the WooCommerce checkout page. No redirect — customer stays on the checkout page.</p>
+    <h3 style="margin-bottom:8px;">Embed - Popup Modal <span style="font-size:12px;font-weight:500;background:var(--brand-lt);color:var(--brand);padding:2px 8px;border-radius:4px;margin-left:6px;">default</span></h3>
+    <p style="font-size:13.5px;color:var(--gray-600);">Payment form opens as a full-screen overlay modal on the WooCommerce checkout page. No redirect - customer stays on the checkout page.</p>
     <pre>Customer clicks "Place Order"
   → WC AJAX checkout
-  → process_embed_modal() — create checkout session + embedded session
+  → process_embed_modal() - create checkout session + embedded session
   → PHP returns { result: 'success', redirect: '#fanbasis-embed-modal', sdk_config }
   → JS intercepts AJAX, opens modal
   → PaymentCheckout.create() initialises SDK inside modal
   → Payment completes → SDK redirects to WC order-received</pre>
 
-    <h3 style="margin-bottom:8px;margin-top:28px;">Embed — WC Order Pay Page</h3>
+    <h3 style="margin-bottom:8px;margin-top:28px;">Embed - WC Order Pay Page</h3>
     <p style="font-size:13.5px;color:var(--gray-600);">Payment form renders inside the native WC order-pay page (<code>/checkout/order-pay/{id}/</code>), within your active store theme.</p>
     <pre>Customer clicks "Place Order"
-  → process_embed_wc_pay_page() — create checkout session + embedded session
+  → process_embed_wc_pay_page() - create checkout session + embedded session
   → SDK config saved to order meta
   → Redirect to $order->get_checkout_payment_url(true)
   → woocommerce_receipt_ hook fires
-  → render_embed_on_pay_page() — enqueue SDK, output container HTML
+  → render_embed_on_pay_page() - enqueue SDK, output container HTML
   → PaymentCheckout.create() initialises SDK in-page
   → Payment completes → SDK redirects to WC order-received</pre>
   </section>
@@ -176,7 +176,7 @@ public/
      → amount validation (±0.01 tolerance)
      → payment_complete() + update_status('completed')
      → order note added: fan_product_id, fan_transaction_id, fan_payment_id, fan_payment_method
-     → delete_checkout_session() — deactivates payment link
+     → delete_checkout_session() - deactivates payment link
 
 4. SDK redirects customer to WC order-received page</pre>
   </section>
@@ -199,7 +199,7 @@ public/
       </div>
       <div class="card">
         <h3 style="font-size:13px;color:var(--gray-400);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Signature</h3>
-        <p style="font-size:13px;margin:0;color:var(--gray-600);">HMAC-SHA256 via <code>x-webhook-signature</code> header — compared using <code>hash_equals()</code></p>
+        <p style="font-size:13px;margin:0;color:var(--gray-600);">HMAC-SHA256 via <code>x-webhook-signature</code> header - compared using <code>hash_equals()</code></p>
       </div>
     </div>
 
@@ -229,9 +229,9 @@ public/
           <tr><td><code>POST</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/webhook</code></td><td>Fanbasis webhook receiver</td></tr>
           <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/webhook</code></td><td>Health check</td></tr>
           <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/return/{id}/{key}</code></td><td>Return after redirect payment</td></tr>
-          <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/fail/{id}/{key}</code></td><td>SDK failure redirect — marks order failed</td></tr>
+          <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/fail/{id}/{key}</code></td><td>SDK failure redirect - marks order failed</td></tr>
           <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/embed/{id}/{key}</code></td><td>Full-page embed with iframe</td></tr>
-          <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/embed-return/{id}/{key}</code></td><td>Iframe return — redirects parent window</td></tr>
+          <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/embed-return/{id}/{key}</code></td><td>Iframe return - redirects parent window</td></tr>
           <tr><td><code>GET</code></td><td><code>/wp-json/yourpropfirm-fanbasis/v1/order-status/{id}</code></td><td>Poll payment status (Wait for Payment mode)</td></tr>
         </tbody>
       </table>
@@ -251,7 +251,7 @@ public/
       <table>
         <thead><tr><th>Field</th><th>Option Key</th><th>Default</th></tr></thead>
         <tbody>
-          <tr><td>API Key</td><td><code>yourpropfirm_fanbasis_api_key</code></td><td>—</td></tr>
+          <tr><td>API Key</td><td><code>yourpropfirm_fanbasis_api_key</code></td><td>-</td></tr>
           <tr><td>Environment</td><td><code>yourpropfirm_fanbasis_mode</code></td><td><code>test</code></td></tr>
           <tr><td>Creator ID</td><td><code>yourpropfirm_fanbasis_creator_id</code></td><td><code>ypf</code></td></tr>
         </tbody>
@@ -297,7 +297,7 @@ public/
     </div>
     <p style="font-size:13px;color:var(--gray-600);margin-top:8px;">Values: <code>disable</code> (locked) · <code>hide</code> (hidden, data still sent) · <code>editable</code></p>
 
-    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config — Fanbasis</h3>
+    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config - Fanbasis</h3>
     <div class="card" style="padding:0;overflow:hidden;">
       <table>
         <thead><tr><th>Field</th><th>Option Key</th><th>Default</th></tr></thead>
@@ -314,10 +314,10 @@ public/
     </div>
     <p style="font-size:13px;color:var(--gray-600);margin-top:8px;">Color overrides (leave blank for SDK default): <code>background_color</code>, <code>surface_color</code>, <code>border_color</code>, <code>input_background_color</code>, <code>label_color</code>, <code>heading_color</code>, <code>secondary_color</code>, <code>product_text_color</code>.</p>
 
-    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config — Modal</h3>
+    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config - Modal</h3>
     <p style="font-size:13.5px;color:var(--gray-600);">Controls for the Popup Modal: backdrop color, container background, header background, header title color, header subtitle color, spinner color.</p>
 
-    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config — Overlay</h3>
+    <h3 style="margin-top:24px;margin-bottom:10px;">Styling Config - Overlay</h3>
     <div class="card" style="padding:0;overflow:hidden;">
       <table>
         <thead><tr><th>Field</th><th>Option Key</th><th>Default</th></tr></thead>
