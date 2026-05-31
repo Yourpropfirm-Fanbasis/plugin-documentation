@@ -38,7 +38,7 @@ export function Navbar() {
             className="px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 whitespace-nowrap"
             style={{ color: 'var(--text-muted)' }}
           >
-            <span className="hidden xs:inline">API </span>Docs
+            API Docs
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M1 11L11 1M11 1H5M11 1V7"/>
             </svg>
