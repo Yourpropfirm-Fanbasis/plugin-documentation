@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /yourpropfirm-fanbasis-docs
+          NEXT_PUBLIC_BASE_PATH: /plugin-documentation
           NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Add .nojekyll
