@@ -3,15 +3,13 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-
 export function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
   function logout() {
     sessionStorage.removeItem('ypf_fanbasis_auth')
-    router.push(`${basePath}/login`)
+    router.push('/login')
   }
 
   const isActive = (href: string) => pathname === href || pathname === href + '/'
@@ -23,7 +21,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center gap-4">
         {/* Logo */}
-        <Link href={`${basePath}/docs`} className="flex items-center gap-2.5 mr-2" style={{ color: 'var(--text)' }}>
+        <Link href="/docs" className="flex items-center gap-2.5 mr-2" style={{ color: 'var(--text)' }}>
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
             style={{ background: 'linear-gradient(135deg,#27374D,#526D82)' }}
@@ -37,10 +35,10 @@ export function Navbar() {
 
         {/* Nav links */}
         <nav className="flex items-center gap-1 flex-1">
-          <NavLink href={`${basePath}/docs`} active={isActive(`${basePath}/docs`)}>
+          <NavLink href="/docs" active={isActive('/docs')}>
             General
           </NavLink>
-          <NavLink href={`${basePath}/technical`} active={isActive(`${basePath}/technical`)}>
+          <NavLink href="/technical" active={isActive('/technical')}>
             Technical
           </NavLink>
           <a

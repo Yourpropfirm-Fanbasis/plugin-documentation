@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Navbar } from './Navbar'
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-
 interface TocItem { id: string; label: string }
 
 export function PageLayout({ toc, children }: { toc: TocItem[]; children: React.ReactNode }) {
@@ -14,7 +12,7 @@ export function PageLayout({ toc, children }: { toc: TocItem[]; children: React.
 
   useEffect(() => {
     const hash = sessionStorage.getItem('ypf_fanbasis_auth')
-    if (!hash) { router.replace(`${basePath}/login`); return }
+    if (!hash) { router.replace('/login'); return }
     setReady(true)
   }, [router])
 

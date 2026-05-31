@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-
 function simpleHash(str: string) {
   let hash = 0
   for (let i = 0; i < str.length; i++) {
@@ -24,7 +22,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY) === CORRECT) {
-      router.replace(`${basePath}/docs`)
+      router.replace('/docs')
     } else {
       inputRef.current?.focus()
     }
@@ -33,7 +31,7 @@ export default function LoginPage() {
   function attempt() {
     if (simpleHash(value) === CORRECT) {
       sessionStorage.setItem(SESSION_KEY, CORRECT)
-      router.replace(`${basePath}/docs`)
+      router.replace('/docs')
     } else {
       setError(true)
       setValue('')
