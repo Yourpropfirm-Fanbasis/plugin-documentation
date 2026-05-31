@@ -25,9 +25,14 @@
 
 <!-- Header -->
 <header class="page-header">
-  <div class="badge">Plugin Documentation</div>
+  <div class="badge">🔒 Internal Documentation — Confidential</div>
   <h1>Yourpropfirm Fanbasis</h1>
   <p>WooCommerce payment gateway integration with Fanbasis, embedded checkout, webhook confirmation, and automatic order completion.</p>
+  <p style="margin-top:10px;font-size:13px;opacity:.7;">This documentation is for internal use only. Do not distribute.</p>
+  <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#overview" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:600;color:#fff;text-decoration:none;">📄 General Documentation</a>
+    <a href="technical.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.85);text-decoration:none;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">⚙️ Technical Documentation →</a>
+  </div>
 </header>
 
 <!-- Navigation -->
@@ -39,6 +44,7 @@
     <li><a href="#checkout-methods">Checkout Methods</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#settings">Settings</a></li>
+    <li><a href="#limitations">Limitations</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
 </nav>
@@ -399,6 +405,96 @@
 
   <hr class="divider" />
 
+  <!-- ── Limitations ── -->
+  <section id="limitations">
+    <div class="section-label">Limitations</div>
+    <h2>Known Limitations</h2>
+    <p>The following limitations apply to the current version of this plugin. Understanding these boundaries helps set the right expectations before integration.</p>
+
+    <div style="margin-top:28px;display:flex;flex-direction:column;gap:16px;">
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">🔌</div>
+          <div>
+            <h3 style="margin-bottom:6px;">WooCommerce Standard Integration</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              This plugin follows the WooCommerce payment gateway standard. The integration scope is limited to the payment flow: creating a temporary one-time payment product from the WooCommerce order, generating a Fanbasis checkout session (embedded via SDK iframe), processing payment, and verifying it via webhook. No customization outside this flow is included.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">📦</div>
+          <div>
+            <h3 style="margin-bottom:6px;">Order Status Behavior</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              After payment is verified by Fanbasis webhook, the order status (Processing or Completed) depends on your WooCommerce configuration and any third-party plugins you use — for example, an auto-complete order plugin. Typically, once payment is verified, the order will be set to <em>Processing</em> or <em>Completed</em> based on those settings. The plugin itself sets the status to <em>Completed</em> upon successful webhook validation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">🔗</div>
+          <div>
+            <h3 style="margin-bottom:6px;">Post-Payment Third-Party Integration</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              Any business logic or provisioning that happens after payment (e.g. creating trading accounts, sending access credentials, triggering external services) is outside the scope of this plugin. These are handled by other Yourpropfirm plugins (Finpr, QTG) or third-party integrations that listen to WooCommerce order status changes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">📊</div>
+          <div>
+            <h3 style="margin-bottom:6px;">Marketing & Event Tracking</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              Event tracking integration (e.g. Google Tag Manager, GA4 — add-to-cart, begin checkout, purchase events, data layer) follows the WooCommerce standard and is handled by dedicated third-party plugins. This plugin does not implement or override any tracking events. For accurate <code>purchase</code> event firing, enable <strong>Wait for Payment Confirmation</strong> mode so the order is <em>Completed</em> before GTM fires the event.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">💱</div>
+          <div>
+            <h3 style="margin-bottom:6px;">Currency — USD Only</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              Fanbasis currently only accepts <strong>USD</strong> as the payment currency. Multi-currency is not yet supported on the Fanbasis platform. This plugin does not include an automatic currency conversion feature, so your WooCommerce store must be configured with <strong>USD as the active currency</strong> for payments to work correctly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px 28px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="font-size:20px;flex-shrink:0;margin-top:2px;">🌐</div>
+          <div>
+            <h3 style="margin-bottom:6px;">Language — English Only</h3>
+            <p style="font-size:13.5px;color:var(--gray-600);margin:0;">
+              The Fanbasis checkout form and this plugin currently support <strong>English only</strong>. Multi-language and localization (i18n) are not yet supported. If your store uses a non-English locale, the Fanbasis payment form will still render in English.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout callout-info" style="margin-top:24px;">
+      <span class="icon">💡</span>
+      <p>Limitations marked above reflect the current state of both this plugin and the Fanbasis platform. Some may be lifted in future releases as the Fanbasis API evolves.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
   <!-- ── FAQ ── -->
   <section id="faq">
     <div class="section-label">Support</div>
@@ -406,6 +502,19 @@
 
     <div style="margin-top:24px;">
       <details open>
+        <summary>How do I match a WooCommerce order with a Fanbasis transaction?</summary>
+        <div class="faq-body">
+          You can check the order detail page in WooCommerce. Under the <strong>Fanbasis Payment Info</strong> panel, you will find the following transaction data recorded from Fanbasis:
+          <ul style="margin:10px 0 0 18px;line-height:1.9;">
+            <li><code>fan_product_id</code> — Fanbasis product/session ID</li>
+            <li><code>fan_transaction_id</code> — Fanbasis transaction history ID</li>
+            <li><code>fan_payment_id</code> — Fanbasis payment ID</li>
+            <li><code>fan_payment_method</code> — payment method used (e.g. <em>card</em>)</li>
+          </ul>
+          <p style="margin-top:10px;">You can cross-reference these values with the transaction list in your <strong>Fanbasis Dashboard</strong> to verify and reconcile each payment.</p>
+        </div>
+      </details>
+      <details>
         <summary>Do I need to set up the webhook manually?</summary>
         <div class="faq-body">
           No. The plugin registers the Fanbasis webhook automatically when you save settings. You can check the registration status, environment, and webhook URL under <strong>Webhook Status</strong> on the settings page. The webhook is also re-registered automatically if you change your API key or switch environments.
@@ -448,7 +557,7 @@
 
 <!-- Footer -->
 <footer>
-  <p>Yourpropfirm Fanbasis &nbsp;·&nbsp; Version 1.1.0 &nbsp;·&nbsp; For WooCommerce</p>
+  <p>Yourpropfirm Fanbasis &nbsp;·&nbsp; Version 1.2.0 &nbsp;·&nbsp; For WooCommerce &nbsp;·&nbsp; <a href="technical.html" style="color:var(--gray-400);text-decoration:underline;">Technical Reference →</a></p>
 </footer>
 
 <!-- Lightbox -->
