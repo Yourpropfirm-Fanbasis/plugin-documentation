@@ -3,7 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: 'Yourpropfirm Fanbasis — Documentation',
+  title: 'Yourpropfirm Fanbasis - Internal Documentation',
   description: 'Plugin documentation for Yourpropfirm Fanbasis WooCommerce payment gateway',
 }
 

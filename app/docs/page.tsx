@@ -23,6 +23,19 @@ export default function DocsPage() {
     <PageLayout toc={TOC}>
       <div className="space-y-16">
 
+        {/* Internal notice */}
+        <div
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm border"
+          style={{ background: 'var(--accent-lt)', borderColor: 'var(--border-mid)', color: 'var(--text-muted)' }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0" style={{ color: 'var(--brand-mid)' }}>
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>
+            This documentation is for <strong style={{ color: 'var(--text)' }}>internal use only</strong>. Do not distribute or share outside the team.
+          </span>
+        </div>
+
         {/* Overview */}
         <section id="overview">
           <SectionLabel>About</SectionLabel>

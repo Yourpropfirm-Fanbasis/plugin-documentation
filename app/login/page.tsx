@@ -66,7 +66,7 @@ export default function LoginPage() {
             Yourpropfirm Fanbasis
           </h1>
           <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>
-            Plugin Documentation — Confidential
+            Internal Documentation
           </p>
         </div>
 
