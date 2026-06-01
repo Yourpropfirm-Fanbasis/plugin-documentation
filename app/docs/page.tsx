@@ -47,10 +47,10 @@ export default function DocsPage() {
           </p>
           <p className="mt-2">
             Once a customer pays, Fanbasis sends a real-time notification (webhook) to your store. The plugin validates
-            it and automatically marks the WooCommerce order as completed — no manual action required.
+            it and automatically marks the WooCommerce order as completed - no manual action required.
           </p>
           <Callout type="info">
-            <strong>Requirements</strong> — WordPress 6.8+, WooCommerce 7.0+, PHP 8.0+. No build tools or external
+            <strong>Requirements</strong> - WordPress 6.8+, WooCommerce 7.0+, PHP 8.0+. No build tools or external
             dependencies needed.
           </Callout>
         </section>
@@ -133,7 +133,7 @@ export default function DocsPage() {
                 ))}
               </div>
               <Callout type="tip">
-                <strong>Webhook confirmation happens automatically.</strong> There is no manual step — your store receives
+                <strong>Webhook confirmation happens automatically.</strong> There is no manual step - your store receives
                 and validates the payment notification in the background, then updates the order status instantly.
               </Callout>
             </div>
@@ -159,7 +159,7 @@ export default function DocsPage() {
                     Default
                   </span>
                 </div>
-                <h3 className="font-semibold">Embed — Popup Modal</h3>
+                <h3 className="font-semibold">Embed - Popup Modal</h3>
                 <p className="text-sm mt-1">The payment form opens as a full-screen overlay on the WooCommerce checkout page. No redirect, customer stays on the checkout page.</p>
               </div>
               <div className="p-5">
@@ -182,7 +182,7 @@ export default function DocsPage() {
                     Alternative
                   </span>
                 </div>
-                <h3 className="font-semibold">Embed — WC Order Pay Page</h3>
+                <h3 className="font-semibold">Embed - WC Order Pay Page</h3>
                 <p className="text-sm mt-1">The payment form renders inside the native WooCommerce order-pay page, within your active store theme including header and footer.</p>
               </div>
               <div className="p-5">
@@ -247,11 +247,11 @@ export default function DocsPage() {
             {[
               { icon: '🔌', title: 'WooCommerce Standard Integration', desc: 'This plugin follows the WooCommerce payment gateway standard. The integration scope is limited to the payment flow: creating a temporary one-time payment product from the WooCommerce order, generating a Fanbasis checkout session (embedded via SDK iframe), processing payment, and verifying it via webhook. No customization outside this flow is included.' },
               { icon: '📦', title: 'Order Status Behavior', desc: 'After payment is verified by Fanbasis webhook, the order status (Processing or Completed) depends on your WooCommerce configuration and any third-party plugins you use. The plugin itself sets the status to Completed upon successful webhook validation.' },
-              { icon: '🔗', title: 'Post-Payment Third-Party Integration', desc: 'Any business logic or provisioning that happens after payment (e.g. creating trading accounts, sending access credentials) is outside the scope of this plugin. These are handled by other third-party integrations.' },
-              { icon: '📊', title: 'Marketing & Event Tracking', desc: 'Event tracking integration (GA4, GTM — add-to-cart, begin checkout, purchase events) follows the WooCommerce standard and is handled by dedicated third-party plugins. For accurate purchase event firing, enable Wait for Payment Confirmation mode.' },
-              { icon: '💱', title: 'Currency — USD Only', desc: 'Fanbasis currently only accepts USD as the payment currency. Multi-currency is not yet supported. Your WooCommerce store must be configured with USD as the active currency for payments to work correctly.' },
-              { icon: '🌐', title: 'Language — English Only', desc: 'The Fanbasis checkout form and this plugin currently support English only. Multi-language and localization (i18n) are not yet supported. The Fanbasis payment form will still render in English regardless of store locale.' },
-              { icon: '↩️', title: 'Refund — Not Supported', desc: 'This plugin does not support automated refunds. The WooCommerce refund button will not trigger a refund on the Fanbasis side. Refunds must be processed manually through the Fanbasis Dashboard.' },
+              { icon: '🔗', title: 'Post-Payment Third-Party Integration', desc: 'Any business logic or provisioning that happens after payment is outside the scope of this plugin. These are handled by other third-party integrations.' },
+              { icon: '📊', title: 'Marketing & Event Tracking', desc: 'Event tracking integration (GA4, GTM - add-to-cart, begin checkout, purchase events) follows the WooCommerce standard and is handled by dedicated third-party plugins. For accurate purchase event firing, enable Wait for Payment Confirmation mode.' },
+              { icon: '💱', title: 'Currency - USD Only', desc: 'Fanbasis currently only accepts USD as the payment currency. Multi-currency is not yet supported. Your WooCommerce store must be configured with USD as the active currency for payments to work correctly.' },
+              { icon: '🌐', title: 'Language - English Only', desc: 'The Fanbasis checkout form and this plugin currently support English only. Multi-language and localization (i18n) are not yet supported. The Fanbasis payment form will still render in English regardless of store locale.' },
+              { icon: '↩️', title: 'Refund - Not Supported', desc: 'This plugin does not support automated refunds. The WooCommerce refund button will not trigger a refund on the Fanbasis side. Refunds must be processed manually through the Fanbasis Dashboard.' },
             ].map(l => (
               <Card key={l.title} className="p-5">
                 <div className="flex gap-4">
@@ -284,10 +284,10 @@ export default function DocsPage() {
               <div className="faq-body">
                 <p>Check the order detail page in WooCommerce. Under the <strong>Fanbasis Payment Info</strong> panel, you will find:</p>
                 <ul>
-                  <li><code>fan_product_id</code> — Fanbasis product/session ID</li>
-                  <li><code>fan_transaction_id</code> — Fanbasis transaction history ID</li>
-                  <li><code>fan_payment_id</code> — Fanbasis payment ID</li>
-                  <li><code>fan_payment_method</code> — payment method used (e.g. <em>card</em>)</li>
+                  <li><code>fan_product_id</code> - Fanbasis product/session ID</li>
+                  <li><code>fan_transaction_id</code> - Fanbasis transaction history ID</li>
+                  <li><code>fan_payment_id</code> - Fanbasis payment ID</li>
+                  <li><code>fan_payment_method</code> - payment method used (e.g. <em>card</em>)</li>
                 </ul>
                 <p>Cross-reference these with the transaction list in your <strong>Fanbasis Dashboard</strong> to verify and reconcile each payment.</p>
               </div>
@@ -301,7 +301,7 @@ export default function DocsPage() {
             <details>
               <summary>Where can I view payment activity logs?</summary>
               <div className="faq-body">
-                <p>Go to <strong>WooCommerce → Status → Logs</strong> and filter by source <code>yourpropfirm-fanbasis-debug</code>. Make sure <strong>Enable Logs</strong> is turned on under Additional Settings. Use <strong>Advanced</strong> log mode when debugging — it shows full API payloads and responses.</p>
+                <p>Go to <strong>WooCommerce → Status → Logs</strong> and filter by source <code>yourpropfirm-fanbasis-debug</code>. Make sure <strong>Enable Logs</strong> is turned on under Additional Settings. Use <strong>Advanced</strong> log mode when debugging - it shows full API payloads and responses.</p>
               </div>
             </details>
             <details>
